@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container h1 {
+  margin: 84px 0 24px;
+}
+.container input {
+  flex: 2px;
+  width: 50%;
+  padding: 25px;
+
+  background-color: #E6E6E6;
+  opacity: 50%;
+
+  border-radius: 6px;
+  border: none;
+
+  font-weight: 700;
+}
+.container button {
+  background-color: rgb(177, 148, 116);
+  color: #ffffff;
+
+  border-radius: 5px;
+  border: none;
+
+
+  margin: 12px 0 84px;
+  width: 50%;
+  padding: 25px;
+
+  cursor: pointer;
+  transition: filter 0.3s;
+
+}
+
+.container button:hover {
+  filter:contrast(0.9);
+}

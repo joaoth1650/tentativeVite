@@ -1,71 +1,90 @@
-import { useState, useEffect } from 'react';
-import './style.css';
+import { useState } from 'react';
+import styled from 'styled-components';
 
-import { Card, CardProps } from '../components/card';
+const Boton = styled.button`
+    padding: 5px;
+    height: 50px;
+    width: 150px;
+    border-radius: 50px;
+    `
 
-type ProfileResponse = {
-  name: string;
-  avatar_url: string;
+
+const Home = () => {
+const [description, setDescription] = useState<string>("")
+const [phone, setPhone] = useState<string>("")
+const [name, setName] = useState<string>("")
+const [color, setColor] = useState<string>("bg-yellow-400 items-center hover:bg-yellow-400 text-center flex justify-center font-bold")
+const [formulario, setFormulario] = useState<string>("grid grid-flow-col grid-cols-1 grid-rows-1 gap-4")
+const [formularioSmall, setFormularioSmall] = useState<string>("grid grid-flow-col grid-cols-1 grid-rows-1 gap-4")
+const [thanks, setThanks] = useState<string>("hidden")
+const [boton, setBoton] = useState<string>("flex w-full justify-center mt-10")
+const [Label, setLabel] = useState<string>("SEND")
+
+const send = () => {
+    if (description && phone && name) {
+        const contenido = {
+            "content": "Que pasa amigos, vou hablar agora!",
+            "embeds": [{
+                "title": phone,
+                "description": description,
+                "footer": {
+                    "text": "Obrigado, att:" + " " + name
+                }
+            }]
 }
-
-type User = {
-  name: string;
-  avatar: string;
-}
-
-export function Home() {
-  const [coffeeName, setCoffeeName] = useState('');
-  const [coffees, setCoffees] = useState<CardProps[]>([]);
-  const [user, setUser] = useState<User>({} as User);
-
-  function adicionarAoCoffee() {
-    const newCoffee = {
-      name: coffeeName,
-      time: new Date().toLocaleTimeString("pt-br", {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-      })
-    };
-    setCoffees(prevState => [...prevState, newCoffee]);
-  }
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('https://api.github.com/users/joaoth1650')
-      const data = await response.json() as ProfileResponse;
-      setUser({
-        name: data.name,
-        avatar: data.avatar_url,
-      });
+        fetch('https://discordapp.com/api/webhooks/1113561678689345637/sm7gTwM0MKzWna1cAK_kdMPKKQ6YlhjvwX2cZryVoVcALs0yYI2h5MDHI5EOr_lLV5dY', {
+            method: 'POST',
+            body: JSON.stringify(contenido),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => {
+                setDescription("")
+                setName("")
+                setPhone("")
+                setFormulario("hidden grid grid-flow-col grid-cols-3 grid-rows-1 gap-4") 
+                setThanks("grid grid-flow-col grid-cols-3 grid-rows-1 gap-4") 
+                setBoton("hidden")
+                })
     }
-    
-    fetchData();
-
-  }, [])
+    else {
+        setColor("text-white items-center bg-red-500 text-center flex justify-center font-bold hover:bg-red-400") 
+        setLabel("Error try again")
+    }
+}
 
   return (
-    <div className="container">
-      <header>
-        <h1>Projetones coffeetones!</h1>
-        <div>
-          <strong>Main café {user.name}</strong>
-          <img src={user.avatar} alt="foto perfil" />
+    <div>
+        <div className="h-screen bg-black flex flex-col justify-center p-60">
+            <div className="text-center h-auto">
+                <div className="mb-5 text-yellow-400 text-xl font-semibold">Mande uma sugestão </div>
+                <div className={formulario}>
+                    <div className="flex flex-col">
+                        <div className="flex flex-col">
+                            <label className="text-white text-base font-normal p-1">Descreva sua ideia </label>
+                            <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Describe your idea." className="p-4 rounded col-12" />
+                            <br></br>
+                            <label className="text-white text-base font-normal p-1">Informe seu numero</label>
+                            <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" placeholder="55-XX-XXXX-XXX" className="p-4 rounded col-12" />
+                            <br></br>
+                            <label className="text-white text-base font-normal p-1">Informe seu nome</label>
+                            <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="Exa. Yan Santiago" className="p-4 rounded col-12" />
+                        </div>
+                    </div>
+                </div>
+                <div className={thanks}>
+                    <div></div>
+                    <div className="text-center text-4x1 font-bold text-gray-100 mt-10 mb-10"></div>
+                    <div></div>
+                </div>
+            </div>
+            <div className={boton}>
+                <Boton onClick={send} className={color}>{Label}</Boton>
+            </div>
         </div>
-      </header>
-
-
-      <input
-        type="text" placeholder="Digite a bebida desejado. . ." onChange={e => setCoffeeName(e.target.value)}
-      />
-
-      <button type="button" onClick={adicionarAoCoffee}>Realizar pedido</button>
-
-
-      {
-        coffees.map(coffee => <Card key={coffee.time} name={coffee.name} time={coffee.time} />)
-      }
-
     </div>
   )
 }
+
+export default Home

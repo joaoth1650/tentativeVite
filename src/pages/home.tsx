@@ -13,11 +13,11 @@ const Home = () => {
 const [description, setDescription] = useState<string>("")
 const [phone, setPhone] = useState<string>("")
 const [name, setName] = useState<string>("")
-const [color, setColor] = useState<string>("bg-yellow-400 items-center hover:bg-yellow-400 text-center flex justify-center font-bold")
+const [color, setColor] = useState<string>("btn btn-outline-warning ")
 const [formulario, setFormulario] = useState<string>("grid grid-flow-col grid-cols-1 grid-rows-1 gap-4")
 const [formularioSmall, setFormularioSmall] = useState<string>("grid grid-flow-col grid-cols-1 grid-rows-1 gap-4")
 const [thanks, setThanks] = useState<string>("hidden")
-const [boton, setBoton] = useState<string>("flex w-full justify-center mt-10")
+const [boton, setBoton] = useState<string>("d-grid gap-2 col-2 mx-auto")
 const [Label, setLabel] = useState<string>("SEND")
 
 const send = () => {
@@ -56,9 +56,9 @@ const send = () => {
 
   return (
     <div>
-        <div className="h-screen bg-black flex flex-col justify-center p-60">
-            <div className="text-center h-auto">
-                <div className="mb-5 text-yellow-400 text-xl font-semibold">Mande uma sugestão </div>
+        <div className="">
+            <div className="mx-auto">
+                <div className="text-center fs-1">Mande uma sugestão </div>
                 <div className={formulario}>
                     <div className="flex flex-col">
                         <div className="flex flex-col">

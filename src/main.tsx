@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client'
 
 
 import './styles/global.css'
-import Home from './pages/home'
+import Discord from './pages/discord'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Home />
+    <Discord />
   </React.StrictMode>,
 )

@@ -87,4 +87,4 @@ const send = () => {
   )
 }
 
-export default Home
+// export default Home

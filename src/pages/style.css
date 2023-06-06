@@ -1,33 +1,18 @@
-#button {
-  position: relative;
-
-  animation-name: ladoUM;
-  animation-duration: 3s;
-  animation-delay: 2s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+body {
+  background-color: rgba(58, 81, 129, 1);
 }
 
+.bg-escolhido {
+  background: #BC8C4E;
+}
+.bg-segundary {
+  background: #C5B197;
+}
 
-@keyframes ladoUM {
-  0% {
-    left: 0;
-    top: 0;
-  }
-  25% {
-    left: 600px;
-    top: 0;
-  }
-  50% {
-    left: 600px;
-    top: 600px;
-  }
-  75% {
-    left: 0;
-    top: 600px;
-  }
-  100% {
-    left: 0px;
-    top: 0px;
-  }
+.h-60 {
+ height: 802px;
+ background: #BC8C4E;
+}
+.w-60 {
+  width: 510px;
 }

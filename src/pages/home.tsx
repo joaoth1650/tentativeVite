@@ -1,13 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components';
-
-const Boton = styled.button`
-    padding: 5px;
-    height: 50px;
-    width: 150px;
-    border-radius: 50px;
-    `
-
+import './style.css'
 
 const Home = () => {
 const [description, setDescription] = useState<string>("")
@@ -15,8 +7,6 @@ const [email, setEmail] = useState<string>("")
 const [name, setName] = useState<string>("")
 const [color, setColor] = useState<string>("btn btn-outline-warning ")
 const [formulario, setFormulario] = useState<string>("grid grid-flow-col grid-cols-1 grid-rows-1 gap-4")
-const [formularioSmall, setFormularioSmall] = useState<string>("grid grid-flow-col grid-cols-1 grid-rows-1 gap-4")
-const [thanks, setThanks] = useState<string>("hidden")
 const [Label, setLabel] = useState<string>("SEND")
 
 const send = () => {
@@ -27,7 +17,7 @@ const send = () => {
                 "title": email,
                 "description": description,
                 "footer": {
-                    "text": "Obrigado, att:" + " " + name
+                    "text": "atenciosamente:" + " " + name
                 }
             }]
 }
@@ -43,7 +33,6 @@ const send = () => {
                 setName("")
                 setEmail("")
                 setFormulario("hidden grid grid-flow-col grid-cols-3 grid-rows-1 gap-4") 
-                setThanks("grid grid-flow-col grid-cols-3 grid-rows-1 gap-4") 
                 })
     }
     else {
@@ -53,34 +42,27 @@ const send = () => {
 }
 
   return (
-    <div>
-        <div className="">
-            <div className="">
-                <div className="text-center fs-1">Mande uma sugestão </div>
-                <div className={formulario}>
-                    <div className="flex flex-col">
-                        <div className="flex flex-col">
-                            <label className="text-black text-base font-normal p-1">Descreva sua ideia </label>
-                            <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Escreva sobre o assunto" className="p-4 rounded col-12" />
-                            <br></br>
-                            <label className="text-blacktext-base font-normal p-1">Informe seu numero</label>
-                            <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="email" className="p-4 rounded col-12" />
-                            <br></br>
-                            <label className="text-black text-base font-normal p-1">Informe seu nome</label>
-                            <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="Ex.Joao Pedro Monteiro" className="p-4 rounded col-12" />
-                        </div>
-                    </div>
+    <div className="row">
+        <div className=" bg-segundary mt-5 w-25 col-4"></div>
+            <div className="bg-escolhido w-50 mb-5 col-4" style={{height:"670px"}}> 
+                <h1 className="text-white">Describer</h1>
+                <div className="row">
+                    <label className="text-white fs-5">Nome</label>
+                    <input value={name} onChange={e => setEmail(e.target.value)} type="email" placeholder="Ex. João Pedro" className="p-2 rounded col-12" />
                 </div>
-                <div className={thanks}>
-                    <div></div>
-                    <div className="text-center text-4x1 font-bold text-gray-100 mt-10"></div>
-                    <div></div>
+                <div className="row">
+                    <label className="text-white fs-5">Email</label>
+                    <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="@outlook.com" className="p-2 rounded col-12" />
+                </div>
+                <div className="row">
+                    <label className="text-white fs-5 col-12">Descrição breve </label>
+                    <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Escreva sobre o assunto" className="p-4 rounded col-12" />
+                </div>
+                <div className="d-grid gap-2 col-6 mx-auto">
+                    <button onClick={send} className="btn btn-outline-warning" type="button">{Label}</button>
                 </div>
             </div>
-            <div className="d-grid gap-2 col-2 mx-auto">
-                <Boton onClick={send} className={color}>{Label}</Boton>
-            </div>
-        </div>
+        <div className="bg-segundary mt-5 w-25 col-4"></div>
     </div>
   )
 }

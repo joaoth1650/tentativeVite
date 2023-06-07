@@ -3,16 +3,46 @@ body {
 }
 
 .bg-escolhido {
+  box-shadow: 30px -5px 6px #0000003a;
+  z-index: 1 ;
   background: #BC8C4E;
 }
 .bg-segundary {
+
+  box-shadow: 60px 7px 6px #0000003a;
+  margin-right: -400px;
   background: #C5B197;
 }
+.bg-segundary-segundary {
+  box-shadow: 60px 6px 3px #0000003a;
+  margin-left: -400px;
+  background: #C5B197;
+  
+}
 
-.h-60 {
- height: 802px;
- background: #BC8C4E;
+.EME-0 {
+  padding-left: 23%!important;
+}
+.mt-0 {
+  margin-top: 15%!important;
 }
 .w-60 {
-  width: 510px;
+  width: 60%!important;
+}
+
+.mt-00 {
+  margin-top: 22%!important;
+}
+.ms-0 {
+  margin-left: 75%!important;
+}
+
+.box {
+  
+  width: 70%!important;
+  background-color:#473823;
+}
+
+.colorPadrao {
+  background-color: #473823;
 }

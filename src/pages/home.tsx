@@ -47,6 +47,7 @@ const Home = () => {
         }
     }
 
+
     return (
         <div className="row mx-auto w-100 container">
             <div className="bg-segundary rounded mt-0 col-4 ">
@@ -82,10 +83,11 @@ const Home = () => {
                     <label className="text-white fs-5 col-12">Descrição breve </label>
                     <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Escreva sobre o assunto" className=" opacity-75 p-4 rounded col-12" />
                 </div>
-                <input value={image} onChange={e => setImage(e.target.value)} type="text" placeholder="url" className=" opacity-75 p-2 rounded col-12" />
+                
                 <div className="row">
-                    <img src={image} alt="" className=" mx-auto col-12 opacity-75" style={{width:"300px"}} />
+                    <img src={image} alt="" className=" mx-auto opacity-75 col-12 " style={{width:"300px"}} />
                     <div className="d-grid gap-2 px-5 ">
+                        <input value={image} onChange={e => setImage(e.target.value)} type="text" placeholder="https://" className=" opacity-75 p-2 rounded col-12" />
                         <button onClick={send} className="btn btn-outline-warning" type="button">{Label}</button>
                     </div>
                 </div>

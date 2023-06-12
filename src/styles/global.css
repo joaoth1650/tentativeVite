@@ -1,3 +1,12 @@
-* {
+.bg-escolhido * {
+  padding: 1rem;
+}
+.bg-segundary * {
+  padding: 1rem;
+}
+.bg-segundary-segundary * {
+  padding: 1rem;
+}
+.issoSim * {
   padding: 1rem;
 }

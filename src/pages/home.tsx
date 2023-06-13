@@ -1,24 +1,27 @@
 import { useState } from 'react';
 import './style.css'
 import Swal from 'sweetalert2'
+import dotenv from 'dotenv';
+const apiUrl = import.meta.env.VITE_APP_API_URL;
+
+
 
 const Home = () => {
     const [description, setDescription] = useState<string>("")
     const [email, setEmail] = useState<string>("")
     const [name, setName] = useState<string>("")
-    const [icone, setIcone] = useState<string>("")
+    const [icone, setIcone] = useState<string>("") //
     const [image, setImage] = useState<string>("")
-    const [titulo, setTitulo] = useState<string>("")
-    const [urlThumb, setThumb] = useState<string>("")
-    const [color, setColor] = useState<string>("btn btn-outline-warning ")
-    const [formulario, setFormulario] = useState<string>("grid grid-flow-col grid-cols-1 grid-rows-1 gap-4")
+    const [titulo, setTitulo] = useState<string>("") // 
+    const [urlThumb, setThumb] = useState<string>("") // 
     const [Label, setLabel] = useState<string>("SEND")
 
 
+ 
 
     const send = () => {
         if (description && email && name) {
-            const contenido = {
+            const conteudo = {
                 "username": "Contact Tentative",
                 "avatar_url": "https://as1.ftcdn.net/v2/jpg/05/55/43/74/1000_F_555437468_Ot5KfXfuYdoMWoSGz33xRRPIoybcRtoQ.jpg",
                 "content": "Um teste de mensagem",
@@ -49,9 +52,10 @@ const Home = () => {
                   }
                 ],
             }
-            fetch('https://discordapp.com/api/webhooks/1113561678689345637/sm7gTwM0MKzWna1cAK_kdMPKKQ6YlhjvwX2cZryVoVcALs0yYI2h5MDHI5EOr_lLV5dY', {
+
+            fetch( apiUrl, {
                 method: 'POST',
-                body: JSON.stringify(contenido),
+                body: JSON.stringify(conteudo),
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -61,7 +65,6 @@ const Home = () => {
                     setName("")
                     setEmail("")
                     setImage("")
-                    setFormulario("hidden grid grid-flow-col grid-cols-3 grid-rows-1 gap-4")
                 })
 
                 Swal.fire({

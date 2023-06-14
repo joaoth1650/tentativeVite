@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './style.css'
+import '../styles/stylee.css'
 import Swal from 'sweetalert2'
 import dotenv from 'dotenv';
 const apiUrl = import.meta.env.VITE_APP_API_URL;
@@ -15,16 +15,14 @@ const Home = () => {
     const [titulo, setTitulo] = useState<string>("") // 
     const [urlThumb, setThumb] = useState<string>("") // 
     const [Label, setLabel] = useState<string>("SEND")
-
-
  
 
     const send = () => {
-        if (description && email && name) {
+        if (description && email && name && titulo) {
             const conteudo = {
                 "username": "Contact Tentative",
                 "avatar_url": "https://as1.ftcdn.net/v2/jpg/05/55/43/74/1000_F_555437468_Ot5KfXfuYdoMWoSGz33xRRPIoybcRtoQ.jpg",
-                "content": "Um teste de mensagem",
+                "content": "Uma nova tentativa de contato foi realizada",
                 "tts": false,
                 "embeds": [
                   {
@@ -46,9 +44,8 @@ const Home = () => {
                       "url": urlThumb
                     },
                     "footer": {
-                      "text": "Atenciosamente" + name + ":)"
+                      "text": "Responder no Email: " + email + " :)"
                     },
-                    "timestamp": "2023"
                   }
                 ],
             }
@@ -65,6 +62,7 @@ const Home = () => {
                     setName("")
                     setEmail("")
                     setImage("")
+                    setTitulo("")
                 })
 
                 Swal.fire({
@@ -87,7 +85,7 @@ const Home = () => {
 
     return (
         <div className="row  mx-auto w-100 mt-5 issoSim container">
-            <div className="bg-segundary rounded mt-0 col-4 ">
+            {/* <div className="bg-segundary rounded mt-0 col-4 ">
                 <h1 className="w-100 mt-0"></h1>
                 <div className="row">
                     <div className="colorPadrao opacity-25 w-25 mb-1"></div>
@@ -102,22 +100,23 @@ const Home = () => {
                     <div className="colorPadrao opacity-25 p-5 rounded col-12"></div>
                 </div>
                 <div className="colorPadrao opacity-25 p-4 rounded "></div>
-            </div>
+            </div> */}
             <div className="bg-escolhido rounded col-5 mb-5 container px-5" >
 
                 <div className="row">
-                    <h1 className="text-white col-8">Describer</h1>
+                    <h1 className="text-white col-8">C O N T A T O</h1>
                 </div>
                 <div className="row ">
                     <label className="text-white fs-5">Nome</label>
-                    <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="Ex. João Pedro" className=" opacity-75 p-2 rounded col-12" />
+                    <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="   Ex. João Pedro" className=" opacity-75 p-2 rounded col-12" />
                 </div>
                 <div className="row">
                     <label className="text-white fs-5">Email</label>
-                    <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="@outlook.com" className=" opacity-75 p-2 rounded col-12" />
+                    <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="  @outlook.com" className=" opacity-75 p-2 rounded col-12" />
                 </div>
                 <div className="row">
                     <label className="text-white fs-5 col-12">Descrição breve </label>
+                    <input value={titulo} onChange={e => setTitulo(e.target.value)} type="text" placeholder="  Sobre o que se trata?" className=" opacity-75 p-2 mb-2 rounded col-12" />
                     <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Escreva sobre o assunto" className=" opacity-75 p-4 rounded col-12" />
                 </div>
                 
@@ -130,7 +129,7 @@ const Home = () => {
                 </div>
 
             </div>
-            <div className="bg-segundary-segundary rounded mt-0 col-4">
+            {/* <div className="bg-segundary-segundary rounded mt-0 col-4">
                 <h1 className="w-100 mt-0"></h1>
                 <div className="row">
                     <div className="colorPadrao opacity-25 rounded w-25 mb-1 ms-0"></div>
@@ -145,7 +144,7 @@ const Home = () => {
                     <div className="colorPadrao opacity-25 p-5 rounded col-12"></div>
                 </div>
                  <div className="colorPadrao opacity-25 p-4 rounded "></div>
-            </div>
+            </div> */}
         </div>
     )
 

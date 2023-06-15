@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../styles/stylee.css'
+import '../styles/CardFlip.css'
 import Swal from 'sweetalert2'
 import dotenv from 'dotenv';
 const apiUrl = import.meta.env.VITE_APP_API_URL;
@@ -15,42 +16,46 @@ const Home = () => {
     const [titulo, setTitulo] = useState<string>("") // 
     const [urlThumb, setThumb] = useState<string>("") // 
     const [Label, setLabel] = useState<string>("SEND")
- 
+    const [color, setColor] = useState('#BC8C4E');
+    const [isFlipped, setIsFlipped] = useState(false);
+    const [segundoEstado, setIsSegundoEstado] = useState('d-none');
+    const [terceiroEstado, setIsTerceiroEstado] = useState('d-none');
+
 
     const send = () => {
-        if (description && email && name && titulo) {
+        if ( name && email) {
             const conteudo = {
                 "username": "Contact Tentative",
                 "avatar_url": "https://as1.ftcdn.net/v2/jpg/05/55/43/74/1000_F_555437468_Ot5KfXfuYdoMWoSGz33xRRPIoybcRtoQ.jpg",
                 "content": "Uma nova tentativa de contato foi realizada",
                 "tts": false,
                 "embeds": [
-                  {
-                    "id": 23645914,
-                    "description": description,
-                    "author": {
-                      "name": name,
-                      "icon_url": icone 
+                    {
+                        "id": 23645914,
+                        "description": description,
+                        "author": {
+                            "name": name,
+                            "icon_url": icone
 
-                      //   "url": "https://www.youtube.com/channel/UCImmyvB_TBV3pGuVxuT4wsw",
-                    },
-                    "title": titulo,
-                    "url": "https://discord.gg/brVS6b7sPr",
-                    "color": 2622218,
-                    "image": {
-                      "url": image
-                    },
-                    "thumbnail": {
-                      "url": urlThumb
-                    },
-                    "footer": {
-                      "text": "Responder no Email: " + email + " :)"
-                    },
-                  }
+                            //   "url": "https://www.youtube.com/channel/UCImmyvB_TBV3pGuVxuT4wsw",
+                        },
+                        "title": titulo,
+                        "url": "https://discord.gg/brVS6b7sPr",
+                        "color": 2622218,
+                        "image": {
+                            "url": image
+                        },
+                        "thumbnail": {
+                            "url": urlThumb
+                        },
+                        "footer": {
+                            "text": "Responder no Email: " + email + " :)"
+                        },
+                    }
                 ],
             }
 
-            fetch( apiUrl, {
+            fetch(apiUrl, {
                 method: 'POST',
                 body: JSON.stringify(conteudo),
                 headers: {
@@ -63,14 +68,76 @@ const Home = () => {
                     setEmail("")
                     setImage("")
                     setTitulo("")
+                    setColor('#505050')
+                    setIsSegundoEstado('bg-segundary rounded mt-0 col-4')
+                    setIsFlipped(!isFlipped);
                 })
 
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Mensagem enviada',
-                    showConfirmButton: false,
-                    timer: 2000
-                  })
+            Swal.fire({
+                icon: 'success',
+                title: 'Mensagem enviada',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+        }
+        else if  ( description && titulo) {
+            const conteudo = {
+                "username": "Contact Tentative",
+                "avatar_url": "https://as1.ftcdn.net/v2/jpg/05/55/43/74/1000_F_555437468_Ot5KfXfuYdoMWoSGz33xRRPIoybcRtoQ.jpg",
+                "content": "Uma nova tentativa de contato foi realizada",
+                "tts": false,
+                "embeds": [
+                    {
+                        "id": 23645914,
+                        "description": description,
+                        "author": {
+                            "name": name,
+                            "icon_url": icone
+
+                            //   "url": "https://www.youtube.com/channel/UCImmyvB_TBV3pGuVxuT4wsw",
+                        },
+                        "title": titulo,
+                        "url": "https://discord.gg/brVS6b7sPr",
+                        "color": 2622218,
+                        "image": {
+                            "url": image
+                        },
+                        "thumbnail": {
+                            "url": urlThumb
+                        },
+                        "footer": {
+                            "text": "Responder no Email: " + email + " :)"
+                        },
+                    }
+                ],
+            }
+
+            fetch(apiUrl, {
+                method: 'POST',
+                body: JSON.stringify(conteudo),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(res => {
+                    setDescription("")
+                    setName("")
+                    setEmail("")
+                    setImage("")
+                    setTitulo("")
+                    setColor('#3a5181')
+                    setIsFlipped(!isFlipped);
+                    setIsTerceiroEstado('bg-segundary-segundary rounded mt-0 col-4')
+                })
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Mensagem enviada',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
         }
         else {
             Swal.fire({
@@ -78,61 +145,69 @@ const Home = () => {
                 title: 'PARECE QUE VOCÊ ESQUECEU DE PRENCHER ALGUM CAMPO IMPORTANTE!',
                 text: 'Tente prencher o formulario novamente',
                 showConfirmButton: false
-              })
+            })
         }
     }
 
 
     return (
-        <div className="row  mx-auto w-100 mt-5 issoSim container">
-            {/* <div className="bg-segundary rounded mt-0 col-4 ">
+        <div className="row mx-auto w-100 mt-5 issoSim container" >
+            <div className={segundoEstado}>
                 <h1 className="w-100 mt-0"></h1>
                 <div className="row">
-                    <div className="colorPadrao opacity-25 w-25 mb-1"></div>
+                    <div className="colorPadrao opacity-25 rounded w-25 mb-1"></div>
+                    <div className="colorPadrao opacity-25 rounded p-3"></div>
+                </div>
+                <div className="row">
+                    <div className="colorPadrao opacity-25 rounded w-25 mb-1"></div>
                     <div className="colorPadrao opacity-25 p-3"></div>
                 </div>
                 <div className="row">
-                    <div className="colorPadrao opacity-25 w-25 mb-1"></div>
-                    <div className="colorPadrao opacity-25 p-3"></div>
-                </div>
-                <div className="row">
-                    <div className="colorPadrao opacity-25 w-25 mb-1"></div>
+                    <div className="colorPadrao opacity-25 rounded w-25 mb-1"></div>
                     <div className="colorPadrao opacity-25 p-5 rounded col-12"></div>
                 </div>
                 <div className="colorPadrao opacity-25 p-4 rounded "></div>
-            </div> */}
-            <div className="bg-escolhido rounded col-5 mb-5 container px-5" >
-
-                <div className="row">
-                    <h1 className="text-white col-8">C O N T A T O</h1>
-                </div>
-                <div className="row ">
-                    <label className="text-white fs-5">Nome</label>
-                    <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="   Ex. João Pedro" className=" opacity-75 p-2 rounded col-12" />
-                </div>
-                <div className="row">
-                    <label className="text-white fs-5">Email</label>
-                    <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="  @outlook.com" className=" opacity-75 p-2 rounded col-12" />
-                </div>
-                <div className="row">
-                    <label className="text-white fs-5 col-12">Descrição breve </label>
-                    <input value={titulo} onChange={e => setTitulo(e.target.value)} type="text" placeholder="  Sobre o que se trata?" className=" opacity-75 p-2 mb-2 rounded col-12" />
-                    <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Escreva sobre o assunto" className=" opacity-75 p-4 rounded col-12" />
-                </div>
-                
-                <div className="row">
-                    <img src={image} alt="" className=" mx-auto opacity-75 col-12 " style={{width:"300px"}} />
-                    <div className="d-grid gap-2 px-5 ">
-                        <input value={image} onChange={e => setImage(e.target.value)} type="text" placeholder="https://" className=" opacity-75 p-2 rounded col-12" />
-                        <button onClick={send} className="btn btn-outline-dark btn-warning" type="button">{Label}</button>
-                    </div>
-                </div>
-
             </div>
-            {/* <div className="bg-segundary-segundary rounded mt-0 col-4">
+            <div className={`card ${isFlipped ? "flipped" : ""}`} style={{ backgroundColor: color, transition: 'background-color 1s ease' }} >
+                <div className="card-inner">
+                    <div className="card-front">
+                        <div className="row">
+                            <h1 className="text-white col-8">C O N T A T O</h1>
+                        </div>
+                        <div className="row ">
+                            <label className="text-white fs-5">Nome</label>
+                            <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="   Ex. João Pedro" className=" opacity-75 p-2 rounded col-12" />
+                        </div>
+                        <div className="row">
+                            <label className="text-white fs-5">Email</label>
+                            <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="  @outlook.com" className=" opacity-75 p-2 rounded col-12" />
+                        </div>
+                        <div className="d-grid gap-2 px-5 ">
+                             <button onClick={send} className="btn btn-outline-dark btn-warning" type="button">{Label}</button>
+                        </div>
+                    </div>
+                    <div className="card-back">
+                        <div className="row">
+                            <label className="text-white fs-5 col-12">Descrição breve </label>
+                            <input value={titulo} onChange={e => setTitulo(e.target.value)} type="text" placeholder="  Sobre o que se trata?" className=" opacity-75 p-2 mb-2 rounded col-12" />
+                            <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Escreva sobre o assunto" className=" opacity-75 p-4 rounded col-12" />
+                        </div>
+
+                        <div className="row">
+                            <img src={image} alt="" className=" mx-auto opacity-75 col-12 " style={{ width: "300px" }} />
+                            <div className="d-grid gap-2 px-5 ">
+                                <input value={image} onChange={e => setImage(e.target.value)} type="text" placeholder="https://" className=" opacity-75 p-2 rounded col-12" />
+                                <button onClick={send} className="btn btn-outline-dark btn-warning" type="button">{Label}</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div className={terceiroEstado}>
                 <h1 className="w-100 mt-0"></h1>
                 <div className="row">
-                    <div className="colorPadrao opacity-25 rounded w-25 mb-1 ms-0"></div>
+                    <div className="colorPadrao opacity-25 z-index-0 rounded w-25 mb-1 ms-0"></div>
                     <div className="colorPadrao opacity-25 p-3"></div>
                 </div>
                 <div className="row">
@@ -144,7 +219,7 @@ const Home = () => {
                     <div className="colorPadrao opacity-25 p-5 rounded col-12"></div>
                 </div>
                  <div className="colorPadrao opacity-25 p-4 rounded "></div>
-            </div> */}
+            </div>
         </div>
     )
 

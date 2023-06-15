@@ -1,25 +1,26 @@
 body {
-  background-color: rgba(58, 81, 129, 1);
+  background-color: #3a5181;
 }
 
 
 .bg-escolhido {
-  
+  width: 900px;
+  height: 700px;
   box-shadow: 30px -5px 6px #0000003a;
-  z-index: 1 ;
-  background: #BC8C4E;
+  z-index: 10 ;
 }
 .bg-segundary {
-  
+  z-index: 0 ;
   box-shadow: 60px 7px 6px #0000003a;
   margin-right: -400px;
-  background: #C5B197;
+  background: #BC8C4E;
 }
 .bg-segundary-segundary {
   
   box-shadow: 60px 6px 3px #0000003a;
+  z-index: -1 ;
   margin-left: -400px;
-  background: #C5B197;
+  background: #505050;
   
 }
 
@@ -49,3 +50,22 @@ body {
 .colorPadrao {
   background-color: #473823;
 }
+
+
+
+
+/* ANIMAÇÃO CORES */
+
+
+.revertCor {
+  background-color: #505050;
+  transition: background-color;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+  transition-delay: 0s;
+}
+
+
+
+
+/* ANIMAÇÃO CORES */

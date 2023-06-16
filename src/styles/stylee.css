@@ -60,7 +60,7 @@ body {
 .revertCor {
   background-color: #505050;
   transition: background-color;
-  transition-duration: 1s;
+  transition-duration: 1,5s;
   transition-timing-function: ease-out;
   transition-delay: 0s;
 }

@@ -139,10 +139,10 @@ const Home = () => {
       <div className="container">
         <div className={primeiroEstado}>
           {showMainCard && (
-            <div className="card__face card__face--front">
+            <div className="card-front">
               <div className="card__content">
                 <h2>Formulário de Contato</h2>
-                <form onSubmit={Send}>
+                <form onSubmit={send}>
                   <div className="form-group">
                     <label htmlFor="name">Nome:</label>
                     <input
@@ -173,10 +173,10 @@ const Home = () => {
             </div>
           )}
   
-          <div className="card__face card__face--back">
+          <div className="card-back">
             <div className="card__content">
               <h2>Formulário de Contato</h2>
-              <form onSubmit={send}>
+              <form onSubmit={Send}>
                 <div className="form-group">
                   <label htmlFor="titulo">Título:</label>
                   <input

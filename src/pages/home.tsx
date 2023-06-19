@@ -178,7 +178,7 @@ const Home = () => {
         return (
             <div className="row mx-auto w-100 mt-5 issoSim container" >
                 <div className={segundoEstado}>
-                    <h1 className="w-100 mt-0">Check</h1>
+                    <h1 className="w-100 mt-0 opacity-50">Check</h1>
                     <div className="row">
                         <div className="colorPadrao opacity-25 rounded w-25 mb-1"></div>
                         <div className="colorPadrao opacity-25 rounded p-3"></div>
@@ -208,7 +208,7 @@ const Home = () => {
                                     <label className="text-white fs-5">Email</label>
                                     <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="  @outlook.com" className=" opacity-75 p-2 rounded col-12" />
                                 </div>
-                                <div className="d-grid gap-2 px-5 ">
+                                <div className="d-grid gap-2 px-5 mt-5 ">
                                     <button onClick={send} className="btn btn-outline-dark btn-warning" type="button">{Label}</button>
                                 </div>
                             </div>
@@ -232,11 +232,11 @@ const Home = () => {
                     </div>
                 )}
                 <div className={conclusaoEstado} style={{ width: '900px', height: '700px'}}>
-                    <h1 className="text-center">Sua mensagem foi enviada!</h1>
+                    <h1 className="text-center"></h1>
                     
                 </div>
                 <div className={terceiroEstado}>
-                    <h1 className="w-100 mt-0">Check</h1>
+                    <h1 className="w-100 mt-0 opacity-50 ">Check</h1>
                     <div className="row">
                         <div className="colorPadrao opacity-25 z-index-0 rounded w-25 mb-1 ms-0"></div>
                         <div className="colorPadrao opacity-25 p-3"></div>
